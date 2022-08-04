@@ -35,7 +35,7 @@ function Header() {
         </div>
         <div className="loginPage">
           <span>Login</span>
-          <hr />
+          <hr/>
         </div>
 
         <div className="sellMenu">
