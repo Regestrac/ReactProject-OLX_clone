@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from './Pages/Signup'
 import Login from './Pages/Login';
 import { AuthContext, FirebaseContext } from './store/Context';
+import CreatePage from './Pages/Create';
 
 function App() {
   const {setUser} =useContext(AuthContext)
@@ -20,6 +21,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/create' element={<CreatePage />} />
         </Routes>
       </BrowserRouter>
     </div>
