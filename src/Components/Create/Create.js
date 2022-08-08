@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import './Create.css';
 import Header from '../Header/Header';
 import { FirebaseContext, AuthContext } from '../../store/Context';
-import { getStorage, ref, uploadBytes,getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
@@ -12,30 +12,31 @@ const Create = () => {
   const [category, setCategory] = useState("")
   const [price, setPrice] = useState("")
   const [image, setImage] = useState("")
-  const date=Date();
+  const date = Date();
   const navigate = useNavigate();
   const handleSubmit = () => {
     const storage = getStorage();
     const storageRef = ref(storage, `/image/${image.name}`);
-    uploadBytes (storageRef, image).then((snapshot) => {
+    uploadBytes(storageRef, image).then((snapshot) => {
       console.log('Uploaded a blob or file!');
     }
-  ).then(()=>{
-    getDownloadURL(ref(storage, `/image/${image.name}`)).then((url) => {
-      console.log('url is: '+ url);
-      firebase.firestore().collection('products').add({
-        name,
-        category,
-        price,
-        url,
-        userId:user.uid,
-        createdAt:date,
+    ).then(() => {
+      getDownloadURL(ref(storage, `/image/${image.name}`)).then((url) => {
+        console.log('url is: ' + url);
+        firebase.firestore().collection('products').add({
+          name,
+          category,
+          price,
+          url,
+          userId: user.uid,
+          createdAt: date,
+          id:Date.now().toString()
+        })
       })
+      navigate('/');
     })
-    navigate('/');
-  })
   }
-  
+
   return (
     <Fragment>
       <Header />
@@ -60,7 +61,7 @@ const Create = () => {
           <br />
           <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} />
           <br />
-          <button className="uploadBtn" value={user} onClick={handleSubmit}>Upload and Submit</button>
+          <button className="uploadBtn"  onClick={handleSubmit}>Upload and Submit</button>
         </div>
       </div>
     </Fragment>
