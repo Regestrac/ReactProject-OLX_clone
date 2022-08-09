@@ -7,10 +7,10 @@ import Posts from '../Components/Posts/Posts';
 function Home(props) {
   return (
     <div className="homeParentDiv">
-      <Header/>
-      <Banner/>
+      <Header />
+      <Banner />
       <Posts />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

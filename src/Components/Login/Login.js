@@ -2,7 +2,7 @@ import React, { useState,useContext } from 'react';
 import { FirebaseContext } from '../../store/Context';
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 function Login() {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -47,7 +47,7 @@ function Login() {
           <br />
           <button>Login</button>
         </form>
-        <a href="/signup">Signup</a>
+        <Link to={'/signup'}>Signup</Link>
       </div>
     </div>
   );

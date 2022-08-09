@@ -21,8 +21,7 @@ function Posts() {
       })
       setProducts(allpost)
     })
-  }, [])
-
+  })
   return (
     <div className="postParentDiv">
       <div className="moreView">
@@ -32,9 +31,12 @@ function Posts() {
         </div>
         <div className="cards">
           {
-            products.map(product => {
+            products.map(product => { 
               return (
-                <div className="card" onClick={()=>{navigate('/view')}}>
+                <div className="card" key={product.id} onClick={()=>{
+                  setPostDetails(product)
+                  navigate('/view')
+                  }}>
                   <div className="favorite">
                     <Heart></Heart>
                   </div>
@@ -63,7 +65,10 @@ function Posts() {
           {
             products.map(product => {
               return (
-                <div className="card">
+                <div className="card" key={product.id} onClick={()=>{
+                  setPostDetails(product)
+                  navigate('/view')
+                  }}>
                   <div className="favorite">
                     <Heart></Heart>
                   </div>
